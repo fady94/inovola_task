@@ -26,8 +26,12 @@ class _TripScreenState extends State<TripScreen> {
     var greyColor = Color(0xff8a8d9e);
     trip = widget.trip;
     trip.img.forEach((img) {
-      sliderImages.add(NetworkImage(img));
+      sliderImages.add(Image.network(
+        img,
+        fit: BoxFit.fill,
+      ));
     });
+    var trainerImg = trip.trainerImg.toString().replaceAll("https", "http");
     trip.reserveTypes.forEach((type) {
       //We will add the reserve type if the count larger than 0
       if (type.count > 0) {
@@ -115,7 +119,7 @@ class _TripScreenState extends State<TripScreen> {
                                       size: 20.0,
                                       color: greyColor,
                                     )),
-                                Text("الثغر بلازا مقابل ساكو",
+                                Text(trip.address,
                                     style: TextStyle(color: greyColor)),
                               ],
                             ),
@@ -124,7 +128,6 @@ class _TripScreenState extends State<TripScreen> {
                       ),
                       Container(height: 0.5, color: greyColor),
                       Container(
-                        // height: (height * 0.10),
                         padding: const EdgeInsets.only(
                             right: 20.0, left: 20.0, top: 10.0, bottom: 10.0),
                         child: Column(
@@ -141,14 +144,15 @@ class _TripScreenState extends State<TripScreen> {
                                         image: new DecorationImage(
                                             fit: BoxFit.fill,
                                             image: new NetworkImage(
-                                                "http://skillzycp.com/upload/trainer/389_BaseImage_636896408382239890.jpg")))),
+                                              trainerImg,
+                                            )))),
                                 SizedBox(width: 10.0),
-                                Text("Hikechangers",
+                                Text(trip.trainerName,
                                     style: TextStyle(color: greyColor)),
                               ],
                             ),
                             Text(
-                              "مغامروا الهايك",
+                              trip.trainerInfo,
                               style: TextStyle(
                                   color: greyColor,
                                   fontWeight: FontWeight.bold),
@@ -158,7 +162,6 @@ class _TripScreenState extends State<TripScreen> {
                       ),
                       Container(height: 0.5, color: greyColor),
                       Container(
-                        // height: (height * 0.40),
                         padding: const EdgeInsets.only(
                             right: 20.0, left: 20.0, top: 10.0, bottom: 10.0),
                         child: Column(
@@ -172,7 +175,7 @@ class _TripScreenState extends State<TripScreen> {
                                     fontSize: 21.0)),
                             SizedBox(height: 3.0),
                             Text(
-                              "يسر فريق hike changers ان تعلن عن رحلتها القادمه وبوجودكم في جُمعتنا تصير احلى جَمعة 😍😍\r\n\r\n\r\nشاركو معنا في رحلة مسائية من أجمل رحلات المغامره \r\nالهايك مشي🚶🏻‍♂🚶🏼‍♀ \r\nوانشطة وفعاليات عديده🃏🎴 \r\nسناكس 🍪🍩🍫 \r\nوجبة عشاء 🌭🥙🍱🥘 \r\nموعد التجمع الساعه /2مساء \r\nونهاية الفعاليه الساعه / 9:30مساء \r\nالسعر / ٢٠٠ريال تشمل التنقلات من نقطة التجمع الى الموقع وفعاليات الرحله وو جبة عشاء 🍢🥗🍱 \r\n \r\nللإستفسار التواصل على الرقم : 0598855557 \r\nواتس اب 0532905587",
+                              trip.occasionDetail,
                               style: TextStyle(
                                   color: greyColor,
                                   fontWeight: FontWeight.w600),
@@ -182,7 +185,6 @@ class _TripScreenState extends State<TripScreen> {
                       ),
                       Container(height: 0.5, color: greyColor),
                       Container(
-                        // height: (height * 0.40),
                         padding: const EdgeInsets.only(
                             right: 20.0, left: 20.0, top: 10.0, bottom: 10.0),
                         child: Column(
@@ -207,7 +209,7 @@ class _TripScreenState extends State<TripScreen> {
                   onPressed: () {},
                   color: Color(0xff723183),
                   child: Container(
-                    padding: const EdgeInsets.all(25.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Text(
                       "قم بالحجز الأن",
                       style: TextStyle(

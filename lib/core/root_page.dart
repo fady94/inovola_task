@@ -16,7 +16,7 @@ class _RootPageState extends State<RootPage> {
   //check the api json to get the data and convert the date to arabic date to be formatted
   Future<Trip> getData() async {
     var response = await http
-        .get('https://run.mocky.io/v3/3a1ec9ff-6a95-43cf-8be7-f5daa2122a34');
+        .get('http://run.mocky.io/v3/3a1ec9ff-6a95-43cf-8be7-f5daa2122a34');
     if (response != null) {
       //If the server did return a 200 OK response,
       //then parse the JSON.
